@@ -16,6 +16,6 @@ jobs:
       - name: 3. Cài đặt công cụ Newman (Postman CLI)
         run: npm install -g newman
 
-      - name: 4. Chạy bộ Test tự động
-        run: |
-          newman run RestfulBooker.postman_collection.json -e RestfulBooker.postman_environment.json
+    - name: 4. Chạy bộ Test tự động
+      run: |
+        newman run RestfulBooker.postman_collection.json -e RestfulBooker.postman_environment.json -d "booking_data.csv"
