@@ -1,9 +1,10 @@
 name: Restful-Booker CI Pipeline
-on: [push, pull_request] # Pipeline kích hoạt khi có ai đó đẩy code lên
+
+on: [push, pull_request] # Kích hoạt pipeline mỗi khi push code hoặc tạo pull request
 
 jobs:
   api-testing:
-    runs-on: ubuntu-latest # Chạy trên một máy chủ Linux ảo
+    runs-on: ubuntu-latest # Chạy trên máy chủ ảo Linux
     steps:
       - name: 1. Checkout mã nguồn
         uses: actions/checkout@v4
@@ -16,6 +17,6 @@ jobs:
       - name: 3. Cài đặt công cụ Newman (Postman CLI)
         run: npm install -g newman
 
-    - name: 4. Chạy bộ Test tự động
-      run: |
-        newman run RestfulBooker.postman_collection.json -e RestfulBooker.postman_environment.json -d "booking_data.csv"
+      - name: 4. Chạy bộ Test tự động với Data-Driven (CSV)
+        run: |
+          newman run RestfulBooker.postman_collection.json -e RestfulBooker.postman_environment.json -d "booking_data.csv"
